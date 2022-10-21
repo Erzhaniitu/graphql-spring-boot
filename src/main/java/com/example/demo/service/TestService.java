@@ -22,7 +22,7 @@ public class TestService {
     }
 
     public Optional<Test> findOne(Integer id) {
-        return tests.stream().filter(coffee -> coffee.getId() == id).findFirst();
+        return tests.stream().filter(test -> test.getId() == id).findFirst();
     }
 
     public Test create(String name, Level level) {
@@ -32,23 +32,23 @@ public class TestService {
     }
 
     public Test update(Integer id, String name, Level level) {
-        Test updatedCoffee = new Test(id, name, level);
+        Test updatedTest = new Test(id, name, level);
         Optional<Test> optional = tests.stream().filter(c -> c.getId() == id).findFirst();
         if (optional.isPresent()) {
-            Test coffee = optional.get();
-            int index = tests.indexOf(coffee);
-            tests.set(index, updatedCoffee);
+            Test test = optional.get();
+            int index = tests.indexOf(test);
+            tests.set(index, updatedTest);
         } else {
             throw new IllegalArgumentException("Invalid data");
         }
-        return updatedCoffee;
+        return updatedTest;
     }
 
     public Test delete(Integer id) {
-        Test coffee = tests.stream().filter(c -> c.getId() == id)
+        Test test = tests.stream().filter(c -> c.getId() == id)
                 .findFirst().orElseThrow(() -> new IllegalArgumentException());
-        tests.remove(coffee);
-        return coffee;
+        tests.remove(test);
+        return test;
     }
 
     @PostConstruct
