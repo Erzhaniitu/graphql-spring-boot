@@ -1,0 +1,22 @@
+type Test {
+    id: ID!
+    name: String
+    type: Level
+}
+
+enum Level {
+    LOW,
+    MEDIUM,
+    HIGH
+}
+
+type Query {
+    findAll: [Test]!
+    findOne(id: ID):Test
+}
+
+type Mutation {
+    create(name: String,level: Level): Test
+    update(id: ID, name:String, level: Level): Test
+    delete(id: ID): Test
+}
